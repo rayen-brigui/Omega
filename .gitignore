@@ -1,0 +1,17 @@
+#ignore data directory (comes preinstalled with server)
+data/
+node_modules/
+
+#ignore modules directory (comes preinstalled with server)
+modules/
+
+#ignore cache directory
+cache/
+
+#ignore the server executable
+altv-server.exe
+
+#ignore certain extensions in general
+*.exe
+*.dll
+*.log

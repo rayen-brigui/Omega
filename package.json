@@ -1,0 +1,30 @@
+{
+  "name": "omega-server",
+  "version": "1.0.0",
+  "description": "this is the omega server development github repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmed-tabib/omega-rp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmed-tabib/omega-rp/issues"
+  },
+  "homepage": "https://github.com/ahmed-tabib/omega-rp#readme",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "simplymongo": "^2.1.2",
+    "sjcl": "^1.0.8",
+    "typeorm": "^0.2.41",
+    "typescript": "^4.5.4"
+  }
+}
