@@ -1,6 +1,7 @@
 #ignore data directory (comes preinstalled with server)
 data/
 node_modules/
+crashdumps/
 
 #ignore modules directory (comes preinstalled with server)
 modules/
