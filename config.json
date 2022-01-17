@@ -1,0 +1,7 @@
+{
+    "db_url": "localhost",
+    "db_database": "omega",
+    "db_collections": ["accounts"],
+    "db_username": null,
+    "db_password": null
+}

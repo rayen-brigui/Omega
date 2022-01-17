@@ -1,7 +1,8 @@
 import * as alt from 'alt-client';
 import * as native from 'natives';
-import './clientAuth';
-
+import './athentication/clientAuth';
+import './admin_cmd/teleport';
+import './Maps/island';
 //@notification
 alt.onServer("client:notification:show", notifyShow);
 
