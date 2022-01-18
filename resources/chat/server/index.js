@@ -1,5 +1,4 @@
-import * as alt from "alt-server";
-
+import * as alt from 'alt-server'
 let cmdHandlers = {};
 let mutedPlayers = new Map();
 

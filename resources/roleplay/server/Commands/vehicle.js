@@ -39,7 +39,7 @@ function handleAddVehicle(player, args) {
             0,
             0,
             0
-        );cvehicle.primaryColor=150;
+        );
         cvehicle.engineOn = true;
           cvehicle.numberPlateText="RB"
         player.setIntoVehicle( cvehicle,1);

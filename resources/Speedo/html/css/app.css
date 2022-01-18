@@ -3,6 +3,7 @@ body {
   overflow: hidden;
   font-family: "Orbitron", sans-serif;
   color: chartreuse;
+  background-color: transparent;
 }
 
 #container {

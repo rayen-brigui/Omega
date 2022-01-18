@@ -3,27 +3,3 @@ import * as native from 'natives';
 import './athentication/clientAuth';
 import './admin_cmd/teleport';
 import './Maps/island';
-//@notification
-alt.onServer("client:notification:show", notifyShow);
-
-export function notifyShow (
-    message,
-    flashing = false,
-    textColor = -1,
-    bgColor = -1,
-    flashColor = [0, 0, 0, 50]
-) {
-    native.beginTextCommandThefeedPost('STRING');
-    if (textColor > -1) native.setColourOfNextTextComponent(textColor);
-	if (bgColor > -1) native.thefeedSetNextPostBackgroundColor(bgColor);
-	if (flashing) {
-		native.thefeedSetAnimpostfxColor(
-			flashColor[0],
-			flashColor[1],
-			flashColor[2],
-			flashColor[3]
-		);
-	}
-    native.addTextComponentSubstringPlayerName(message);
-    native.endTextCommandThefeedPostTicker(flashing, true);
-};

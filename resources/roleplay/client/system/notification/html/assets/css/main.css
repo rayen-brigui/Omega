@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap);
+body,html{overflow:hidden}
+.content-container{width:40%;position:absolute;top:5px;right:0}
+.notification-picture img{width:400px;margin-bottom:-6px}
+
+.notification{ color:white;width:400px;display:block;float:right;font-family:Roboto,sans-serif;margin:2px 12px 2px 12px;opacity:0;animation-duration:10s;animation-name:hideNotify}
+.notification .notification-little{background-image:linear-gradient(to right,rgb(255, 255, 255) ,rgb(255, 255, 255));width:100%;color:rgb(255, 255, 255)}
+.notification .notification-header{color:#fff;width:100%;font-weight:700;overflow:auto;font-size:24px;margin-bottom:-2px}
+.notification-stripe-info{border-right:6px solid #2e69bb}
+.notification-stripe-danger{border-right:6px solid #e74c3c}
+.notification-stripe-warning{border-right:6px solid #f4d03f}
+.notification-stripe-success{border-right:6px solid #28b463}
+.notification-info{background-image:linear-gradient(to right,#0b3c7b ,#2e69bb)}
+.notification-danger{background-image:linear-gradient(to right,#a93226 ,#e74c3c)}
+.notification-warning{background-image:linear-gradient(to right,#d4ac0d,#f4d03f)}
+.notification-success{background-image:linear-gradient(to right,#1e8449 ,#28b463)}
+.notification .notification-header p{margin:12px 12px ;color:rgb(255,255,255)}
+.notification .notification-body{width:100%;background-image:linear-gradient(to right,rgb(255, 115, 0) ,rgb(23, 20, 44));margin:2px 0;overflow:auto}
+.notification .notification-body p{margin:12px 12px;color:#fff}@keyframes hideNotify{0%{margin:-6px 12px 2px 12px;opacity:.2}10%{margin:2px 12px 2px 12px;opacity:1}89%{opacity:1}100%{opacity:0}}

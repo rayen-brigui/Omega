@@ -4,7 +4,12 @@ import { randomPositionAround } from '../utility/vector';
 import { DEFAULT_CONFIG } from '../configuration/config';
 
 
-alt.log(chalk.greenBright('Loaded: events/playerConnect'));
+
+
+alt.on('beforePlayerConnect', (connectionInfo) => {
+    console.log(connectionInfo);
+    }
+  );
 //alt.on('playerConnect', playerConnect);
 
 /*function playerConnect(player) {

@@ -20,10 +20,15 @@ import './events/playerDisconnect';
 // Prototypes
 import './prototypes/player';
 // Systems
+import './systems/notification'
 // Utility
 import './utility/array';
 import './utility/vector';
 
+
+
+
+/*
 
 alt.on('playerConnect', showAuthWindow);
 
@@ -33,3 +38,4 @@ function showAuthWindow(player) {
 };
 
 
+*/

@@ -1,5 +1,7 @@
 import alt from 'alt-client';
 import native from 'natives';
+import * as chat from 'chat';
+import * as notify from '../system/notification/notification';
 
 let webViewAuth = null;
 let webViewAuthCam = null;
@@ -14,37 +16,25 @@ let vista = {
 
 alt.onServer("client:auth:load", () => {
     if (webViewAuth == null) {
-
-        
-        alt.toggleGameControls(false);
+       alt.toggleGameControls(false);
 //Hide HUD and Radar
 native.displayHud(false);
 native.displayRadar(false);
 
 //Setup vista camera
 native.destroyAllCams(true);                                                                          
-cam = native.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', vista.x + 100, vista.y - 300, vista.z + 60,
+cam = native.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', 
+-1835.3670654296875,
+ -1471.5032958984375,
+ 25.03369140625,
                                  0/*up&down*/, 0/*tilt*/, 305/*sidetoside*/, 75/*fov*/, true, 0);
 native.setCamActive(cam, true);
 native.renderScriptCams(true, false, 0, true, false, 0);
 native.setCamAffectsAiming(cam, false);
 alt.showCursor(true);
-
-        /*const camPosition = { x: 450.718, y: 5566.614, z: 806.183 };
-        const webViewAuthCam = native.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', 0, 0, 0, 0, 0, 0, 10, false, 2);
-        const getPointAt = (pos, angle) => { const p = {x: 0, y: 0}; let s = Math.sin(angle); let c = Math.cos(angle); p.x -= pos.x; p.y -= pos.y; let xnew = p.x * c - p.y * s; let ynew = p.x * s + p.y * c; p.x = xnew + pos.x; p.y = ynew + pos.y; return p; };
-        let angle = 0;
-        const interval = alt.setInterval(() => { const np = camPosition; const p  = getPointAt(np, angle); native.setCamCoord(webViewAuthCam, p.x + camPosition.x, p.y + camPosition.x, camPosition.z); native.pointCamAtCoord(webViewAuthCam, camPosition.x, camPosition.y, camPosition.z); angle += 0.00007; }, 16.666667);
-        
-        native.setCamActive(webViewAuthCam, true);
-        native.renderScriptCams(true, true, 16.6667, false, false);
-        native.newLoadSceneStartSphere(camPosition.x, camPosition.y, camPosition.z, 500, 0);
-        native.displayRadar(false);
-
-        alt.showCursor(true);
-        alt.toggleGameControls(false);*/
-                                              //Display login page
-        webViewAuth = new alt.WebView("file:///C:/Users/rayen/Desktop/Omega/resources/roleplay/client/athentication/web/index.html");
+     
+                                         //Display login page
+        webViewAuth = new alt.WebView("http://resource/client/athentication/web/index.html");
         webViewAuth.focus();
 
         webViewAuth.on("client:auth:login:send:data", (account_name, account_password) => {
@@ -57,8 +47,8 @@ alt.showCursor(true);
 		
 		alt.onServer("client:auth:success", () => {
 			webViewAuth.destroy();
+            notify.littleNotification('<center><strong>Welcome Back!</strong></center>',"success");
             
-               
 			alt.showCursor(false)
 			alt.toggleGameControls(true);
 			native.destroyAllCams(true);  

@@ -1,18 +1,16 @@
-
-/*         ******************** to check******************                       */
 import alt from 'alt-server';
 import { log } from 'console';
 import crypto from 'crypto';
 import * as sm from 'simplymongo';
- import "../Database/Database.js";
+import * as notify from '../systems/notification';
+import "../Database/Database.js";
 
 let spawn_point = {
-    x:-1850.127,
-    y:-1231.751,
-    z:13.017
+    x: -1827.8505859375,
+    y: -1251.5472412109375,
+    z: 13.188232421875
 };
-
-
+let player=alt.player;
 let player_data ={
     id:0,
     username:'',
@@ -26,8 +24,9 @@ let player_data ={
 alt.on("playerConnect", (player) => {
     player.spawn(spawn_point.x, spawn_point.y, spawn_point.z, 100);
     player.model = 'mp_m_freemode_01';
-    
     alt.emitClient(player, "client:auth:load");
+    notify.bannerNotification(player,'<center><strong>Welcome To Omega RolePlay</strong></center>','https://cdn.discordapp.com/attachments/897918725636886528/933032286708957194/serverbanner.png');
+
 });
 
 
@@ -53,12 +52,12 @@ async function sign_up_check(player1,arg1,arg2){
             password:arg2,
             money:1000,
             bank:10000,}, 'accounts', true);
-
+            notify.littleNotification(player1,'Account has been created successfully','success');
     } else {
       const player=player1;
         // Account exists. Assign to player object.
        // ***************need ++****************
-        alt.emitClient(player,"client:notification:show", "Username already taken!", true, 162);
+       notify.littleNotification(player,'<center><strong>Email already exists</strong></center>','warning');
     }
 }
 
@@ -71,6 +70,8 @@ alt.onClient("server:auth:validate:data", (player, account_name, account_passwor
     login_check(player,account_name,account_password);
 });
 
+
+
 async function login_check(player,arg1,arg2){
 
     const db = sm.getDatabase();
@@ -80,14 +81,13 @@ async function login_check(player,arg1,arg2){
     if (namematches.length > 0) {
         if (passmatches.length >0){
             alt.emitClient(player, "client:auth:success");
-        alt.emitClient(player, "client:notification:show", `Welcome ${arg1}!`, false, 121);
         }else{
-            //****DO SOMETHING*****
+            notify.littleNotification(player,'<center>Check your password</center>','warning');
         }
     } else {
-        alt.emitClient(player, "client:notification:show", "The given dates are not correct!", true, 162);
+        notify.littleNotification(player,'<center>Account Not found,try to register</center>','warning');
     }
-;
+
 }
 
 
