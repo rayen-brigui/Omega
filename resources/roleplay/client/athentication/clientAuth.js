@@ -41,10 +41,27 @@ alt.showCursor(true);
             alt.emitServer("server:auth:validate:data", account_name, account_password);
         });
 
-        webViewAuth.on("client:auth:register:send:data", (account_name, account_password) => {
-            alt.emitServer("server:auth:register:data", account_name, account_password);
+        webViewAuth.on("client:auth:register:send:data", (account_name,account_email, account_password,pass2) => {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(account_email)) {
+              if (account_name.length<4) 
+              {
+                notify.littleNotification('<center><strong>Username must be longer!</strong></center>',"danger");
+                
+              } else {
+                  if (!(pass2=account_password)){  notify.littleNotification('<center><strong>Passwords do not Match </strong></center>',"danger");
+
+                  }else {
+                        alt.emitServer("server:auth:register:data", account_name,account_email, account_password);
+
+                  }
+                    }
+            } else{
+                notify.littleNotification('<center><strong>You have entered an invalid email address!</strong></center>',"danger");
+            }
+            
         });
-		
+
+	
 		alt.onServer("client:auth:success", () => {
 			webViewAuth.destroy();
             notify.littleNotification('<center><strong>Welcome Back!</strong></center>',"success");

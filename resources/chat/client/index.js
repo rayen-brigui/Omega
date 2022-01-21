@@ -66,4 +66,4 @@ alt.on("keyup", (key) => {
   }
 });
 
-pushLine("<b>alt:V Multiplayer has started</b>");
+pushLine("<b><h3>{F18930}Omega RolePlay has started</h3></b>");

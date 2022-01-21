@@ -8,6 +8,8 @@ import { DEFAULT_CONFIG } from '../configuration/config';
 
 alt.on('beforePlayerConnect', (connectionInfo) => {
     console.log(connectionInfo);
+    
+    
     }
   );
 //alt.on('playerConnect', playerConnect);

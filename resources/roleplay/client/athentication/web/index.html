@@ -67,8 +67,13 @@
 .login-snip .sign-in:checked+.tab,
 .login-snip .sign-up:checked+.tab {
     color: #fff;
-    border-color: #1161ee;
+    border-color: rgb(228, 108, 9);
     background: transparent;
+}
+.login-snip .sign-in+.tab,
+.login-snip .sign-up+.tab {
+    color: #fff;
+   
 }
 
 .login-space {
@@ -103,12 +108,14 @@
 }
 
 .login-space .group .label {
-    color: #aaa;
+    color: rgb(228, 108, 9);
     font-size: 12px
 }
 
 .login-space .group .button {
-    background: #1161ee
+    
+    background:
+    linear-gradient(to right,rgb(255, 120, 30),rgb(182, 73, 0))
 }
 
 .login-space .group label .icon {
@@ -148,7 +155,7 @@
 }
 
 .login-space .group .check:checked+label .icon {
-    background: #1161ee
+    background: rgb(228, 108, 9)
 }
 
 .login-space .group .check:checked+label .icon:before {
@@ -198,6 +205,8 @@ a {
 .foot {
     text-align: center;
     color: white;
+    border-bottom: 2px;
+
 }
 
 .card {
@@ -243,16 +252,17 @@ img {
                                 <div class="group"> <input type="submit" class="button" value="Sign In" onclick="sendLoginData()"> </div>
                                 <div class="hr"></div>
                            </form>
-                           <div class="foot"> <a href="https://media.makeameme.org/created/well-done-asshole.jpg">Forgot Password?</a> </div>
+                           <div class="foot" id="fp" > <a href=""></a> Forgot Password? </div>
                         </div>
                         <form action="" method="post">
                          <div class="sign-up-form">
                         
+                            <div class="group"> <label for="pass" class="label">Username</label> <input id="username" type="text" class="input" placeholder="Enter your username"> </div>
                             <div class="group"> <label for="pass" class="label">Email Address</label> <input id="email" type="text" class="input" placeholder="Enter your email address"> </div>
                             <div class="group"> <label for="pass" class="label">Password</label> <input id="password" type="password" class="input" data-type="password" placeholder="Create your password"> </div>
-                            <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
+                            <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass2" type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
                             <div class="group"> <input type="submit" class="button" value="Sign Up" onclick="sendRegisterData()"> </div>
-                            <div class="hr"></div>
+                           
                             <div class="foot"> <label for="tab-1">Already Member?</label> </div>
                         </form> 
                     </div>
@@ -263,7 +273,12 @@ img {
     </div>
 </div>
 <script>
-  
+    
+
+
+ 
+
+
             function sendLoginData() {
                 let account_name = document.getElementById("user1").value;
                 let account_password = document.getElementById("pass1").value;
@@ -271,14 +286,11 @@ img {
             }
 
             function sendRegisterData() {
-                let account_name = document.getElementById("email").value;
-                let account_password = document.getElementById("password").value;
-                if (account_name.length<4) {
-                    
-                    return;
-                }else{
-                    alt.emit("client:auth:register:send:data", account_name, account_password);
-                }
+                var account_name = document.getElementById("username").value;
+                var account_email = document.getElementById("email").value;
+                var account_password = document.getElementById("password").value;
+                var pass2= document.getElementById("pass2").value;
+                  alt.emit("client:auth:register:send:data", account_name,account_email,account_password,pass2);
                 
             }
         
