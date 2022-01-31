@@ -1,7 +1,10 @@
+
+
 alt.on("speedometer:init", (data) => {
   let color = data.color;
   document.getElementById("container").style.color =
-    "rgb(" + color.r + "," + color.g + "," + color.b;
+  "white"
+  //  "rgb(" + color.r + "," + color.g + "," + color.b;
 });
 alt.on("speedometer:data", (data) => {
   let speed = data.speed;
@@ -17,7 +20,7 @@ alt.on("speedometer:data", (data) => {
   } else {
     document.getElementById("engineIcon").style.visibility = "hidden";
   }
-  document.getElementById("speedValue").style.height = speed*0.8 + "px";
+  document.getElementById("speedValue").style.height = speed + "px";
   document.getElementById("fuelMeter").value = fuel;
   document.getElementById("rpmMeter").value = rpm;
   document.getElementById("speedText").innerHTML = speed;

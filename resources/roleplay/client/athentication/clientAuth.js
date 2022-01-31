@@ -76,12 +76,12 @@ alt.showCursor(true);
 			native.clearFocus();
 			native.newLoadSceneStop();
 			native.displayRadar(true);
-            
+            native.displayHud(true);
 			//@replaces colors
-			native.replaceHudColourWithRgba(142, 255, 255, 33, 255);
-			native.replaceHudColourWithRgba(143, 255, 255, 33, 255);
-			native.replaceHudColourWithRgba(144, 255, 255, 33, 255);
-			native.replaceHudColourWithRgba(145, 255, 255, 33, 255);
+			native.replaceHudColourWithRgba(142,255, 125, 0, 255);
+			native.replaceHudColourWithRgba(143, 255, 125, 0, 255);
+			native.replaceHudColourWithRgba(144, 255, 125, 0, 255);
+			native.replaceHudColourWithRgba(145, 255, 125, 0, 255);
 		});
     }
 });

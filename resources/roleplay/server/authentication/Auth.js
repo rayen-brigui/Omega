@@ -4,21 +4,13 @@ import crypto from 'crypto';
 import * as sm from 'simplymongo';
 import * as notify from '../systems/notification';
 import "../Database/Database.js";
-
 let spawn_point = {
     x: -1827.8505859375,
     y: -1251.5472412109375,
     z: 13.188232421875
 };
 let player=alt.player;
-let player_data ={
-    id:0,
-    username:'',
-    password:'',
-    money:1000,
-    bank:10000,
-    
-    };
+export let player_data ={};
     
     //@playerConnect
 alt.on("playerConnect", (player) => {
@@ -37,7 +29,6 @@ alt.on("playerConnect", (player) => {
     hash.update(account_password);
     account_password = hash.digest("hex");
     sign_up_check(player,account_name,account_email, account_password);
-       console.log(player);console.log(player.money);
     });
 async function sign_up_check(player1,arg1,arg2,arg3){
     const db = sm.getDatabase();
@@ -47,12 +38,17 @@ async function sign_up_check(player1,arg1,arg2,arg3){
     if (matches.length <= 0) {
         // Account does not exist. Create it.
         player_data = await db.insertData({ 
-            id:0,
+            socialid:player1.socialID,
             email:arg2,
             username:arg1,
             password:arg3,
-            money:1000,
-            bank:10000,}, 'accounts', true);
+            hwid:player1.hwidHash,
+            whitelist:{
+                status:false,
+                Done:false, 
+            },
+            lastIp:player1.ip,       
+        }, 'accounts', true);
             notify.littleNotification(player1,'Account has been created successfully','success');
     } else {
       const player=player1;
@@ -90,12 +86,6 @@ async function login_check(player,arg1,arg2){
     }
 
 }
-
-
-/*async function UsernamePassed(player) {
-    const db = sm.getDatabase();
-    player.data = await db.insertData({ username: player_data.username, password:player_data.password }, 'accounts', true);
-};*/
 
         
 
