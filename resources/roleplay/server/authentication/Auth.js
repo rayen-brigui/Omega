@@ -1,5 +1,4 @@
 import alt from 'alt-server';
-import { log } from 'console';
 import crypto from 'crypto';
 import * as sm from 'simplymongo';
 import * as notify from '../systems/notification';
@@ -33,8 +32,11 @@ alt.on("playerConnect", (player) => {
 async function sign_up_check(player1,arg1,arg2,arg3){
     const db = sm.getDatabase();
     const matches = await db.fetchAllByField('email',arg2, 'accounts');
-
-    // Check if it exists. Create it if it doe snot.
+    const usercheck = await db.fetchAllByField('username',arg1, 'accounts');
+    if (usercheck.length>0) {
+        notify.littleNotification(player1,'Username is already Taken','danger');
+    }else {
+         // Check if it exists. Create it if it doe snot.
     if (matches.length <= 0) {
         // Account does not exist. Create it.
         player_data = await db.insertData({ 
@@ -47,7 +49,8 @@ async function sign_up_check(player1,arg1,arg2,arg3){
                 status:false,
                 Done:false, 
             },
-            lastIp:player1.ip,       
+            lastIp:player1.ip,   
+            lastTimeLogin:new Date()    
         }, 'accounts', true);
             notify.littleNotification(player1,'Account has been created successfully','success');
     } else {
@@ -56,7 +59,7 @@ async function sign_up_check(player1,arg1,arg2,arg3){
        // ***************need ++****************
        notify.littleNotification(player,'<center><strong>Email already exists</strong></center>','warning');
     }
-}
+}};
 
 
 //@login
@@ -64,7 +67,9 @@ alt.onClient("server:auth:validate:data", (player, account_name, account_passwor
 	const hash = crypto.createHash("sha256");
     hash.update(account_password);
     account_password = hash.digest("hex");
-    login_check(player,account_name,account_password);
+   if (login_check(player,account_name,account_password)){
+       alt.emit('islogin',account_name);
+   }
 });
 
 
@@ -77,15 +82,27 @@ async function login_check(player,arg1,arg2){
     
     if (namematches.length > 0) {
         if (passmatches.length >0){
+            await db.updatePartialData(namematches[0]._id,{lastTimeLogin:new Date(Date.now())},'accounts');
+            setTimeout(()=>{
+                console.log(namematches);  
+            },100)
+        
+            console.log(namematches[0]._id);
+            
             alt.emitClient(player, "client:auth:success");
+            return true;
         }else{
             notify.littleNotification(player,'<center>Check your password</center>','warning');
+            return false;
         }
     } else {
         notify.littleNotification(player,'<center>Account Not found,try to register</center>','warning');
+        return false;
     }
+    };
+   
 
-}
+
 
         
 

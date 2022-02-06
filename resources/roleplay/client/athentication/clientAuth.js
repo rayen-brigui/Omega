@@ -23,11 +23,9 @@ native.displayRadar(false);
 
 //Setup vista camera
 native.destroyAllCams(true);                                                                          
-cam = native.createCamWithParams('DEFAULT_SCRIPTED_CAMERA', 
--1835.3670654296875,
- -1471.5032958984375,
- 25.03369140625,
-                                 0/*up&down*/, 0/*tilt*/, 305/*sidetoside*/, 75/*fov*/, true, 0);
+cam = native.createCamWithParams('DEFAULT_SCRIPTED_CAMERA',-2031.91650390625,
+-1194.5010986328125,
+49.904052734375,0/*up&down*/, 0/*tilt*/,325/*sidetoside*/, 75/*fov*/, true, 0);
 native.setCamActive(cam, true);
 native.renderScriptCams(true, false, 0, true, false, 0);
 native.setCamAffectsAiming(cam, false);
@@ -39,6 +37,8 @@ alt.showCursor(true);
 
         webViewAuth.on("client:auth:login:send:data", (account_name, account_password) => {
             alt.emitServer("server:auth:validate:data", account_name, account_password);
+            alt.setMeta('sessionUsername',account_name);
+            
         });
 
         webViewAuth.on("client:auth:register:send:data", (account_name,account_email, account_password,pass2) => {
@@ -66,22 +66,22 @@ alt.showCursor(true);
 			webViewAuth.destroy();
             notify.littleNotification('<center><strong>Welcome Back!</strong></center>',"success");
             
-			alt.showCursor(false)
-			alt.toggleGameControls(true);
-			native.destroyAllCams(true);  
-
-			native.renderScriptCams(false, true,5000, true,true,0);
+			//alt.showCursor(false)
+			//alt.toggleGameControls(true);
+			//native.destroyAllCams(true);  
+			//native.renderScriptCams(false, true,5000, true,true,0);
 			native.destroyCam(cam, true);
-			native.setFollowPedCamViewMode(1);
+			//native.setFollowPedCamViewMode(1);
 			native.clearFocus();
-			native.newLoadSceneStop();
-			native.displayRadar(true);
-            native.displayHud(true);
-			//@replaces colors
+			//native.newLoadSceneStop();
+			//native.displayRadar(true);
+           // native.displayHud(true);
+		//@replaces colors
 			native.replaceHudColourWithRgba(142,255, 125, 0, 255);
 			native.replaceHudColourWithRgba(143, 255, 125, 0, 255);
 			native.replaceHudColourWithRgba(144, 255, 125, 0, 255);
 			native.replaceHudColourWithRgba(145, 255, 125, 0, 255);
+            alt.emit('islogin');
 		});
     }
 });

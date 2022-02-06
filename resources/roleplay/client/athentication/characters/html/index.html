@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select character</title>
+    <link rel="stylesheet" href="./style.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body id="charBody">
+    <div class="characterselector" id="characterselector">
+      <button id="createcharacter"> Create character</button>
+     <div id="0" class="charselect">
+     </div>
+     <div id="1" class="charselect" >
+     </div>
+    </div>
+    <div class="createcharecterscreen" id="createcharecterscreen" >
+      <div class="registercharacter">
+        <h2>Create character</h2>
+         <input type="text" placeholder="Character Name" id="name">
+          <input type="text" placeholder="Character Surname" id="surname">
+         <input type="date" id="date">
+         <select name="" id="sex">
+           <option value="male">Male</option>
+           <option value="female">Female</option>
+         </select>
+         <input type="text" placeholder="Mother's name" id="MomName">
+          <input type="text" placeholder="Father's name" id="FatherName">
+          <button id="createCharacter">Create character</button>
+          <button id="lastpage">Back</button>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
