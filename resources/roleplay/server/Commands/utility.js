@@ -23,11 +23,19 @@ chat.registerCmd('tp', (player) => {
   });                                                     // requesting teleporting the player using the command              
 
 
-  chat.registerCmd('br',brmsg);
-  function brmsg(player,msg) {
-      chat.broadcast(msg);
+  chat.registerCmd('br',(player,arg)=>{
+      console.log(arg.toString());
+     let arg2=''
+      for (let i = 0;i<arg.length; i++){
+            const element = arg[i]; 
+             arg2=arg2+' '+element;
+      }   
       
-  };
+      chat.broadcast('<strong>{FFFFFF}[System]:'+arg2+'</strong>');
+  });
+
+     
+
 
 
 

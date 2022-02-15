@@ -4,9 +4,9 @@ import * as sm from 'simplymongo';
 import * as notify from '../systems/notification';
 import "../Database/Database.js";
 let spawn_point = {
-    x: -1827.8505859375,
-    y: -1251.5472412109375,
-    z: 13.188232421875
+    x: -1832.756103515625,
+    y: -1191.112060546875,
+    z: 29.970703125
 };
 let player=alt.player;
 export let player_data ={};
@@ -83,12 +83,6 @@ async function login_check(player,arg1,arg2){
     if (namematches.length > 0) {
         if (passmatches.length >0){
             await db.updatePartialData(namematches[0]._id,{lastTimeLogin:new Date(Date.now())},'accounts');
-            setTimeout(()=>{
-                console.log(namematches);  
-            },100)
-        
-            console.log(namematches[0]._id);
-            
             alt.emitClient(player, "client:auth:success");
             return true;
         }else{

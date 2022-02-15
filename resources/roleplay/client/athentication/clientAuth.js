@@ -34,8 +34,23 @@ alt.showCursor(true);
                                          //Display login page
         webViewAuth = new alt.WebView("http://resource/client/athentication/web/index.html");
         webViewAuth.focus();
+        const saved_user=alt.LocalStorage.get('username');
+        const saved_pass=alt.LocalStorage.get('password');
 
-        webViewAuth.on("client:auth:login:send:data", (account_name, account_password) => {
+        if (saved_user!==''){
+            if (saved_pass!==''){
+                webViewAuth.emit('savedData',saved_user,saved_pass)
+                console.log(saved_user+saved_pass);
+            }
+        }
+        webViewAuth.on("client:auth:login:send:data", (account_name, account_password,rememberMe) => {
+           if (rememberMe){
+                    alt.LocalStorage.set('username', account_name);
+                    alt.LocalStorage.set('password', account_password);
+                    alt.LocalStorage.save();
+                alt.log(rememberMe);    
+            }
+            
             alt.emitServer("server:auth:validate:data", account_name, account_password);
             alt.setMeta('sessionUsername',account_name);
             
@@ -83,5 +98,18 @@ alt.showCursor(true);
 			native.replaceHudColourWithRgba(145, 255, 125, 0, 255);
             alt.emit('islogin');
 		});
+
+        alt.on('changecam',()=>{
+            alt.toggleGameControls(true);
+            native.destroyAllCams(true);  
+			native.renderScriptCams(false, true,3000, true,true,0);
+			//native.destroyCam(cam, true);
+			native.setFollowPedCamViewMode(1);
+			native.clearFocus();
+            alt.showCursor(false)
+			native.newLoadSceneStop();
+            native.displayRadar(true);
+            native.displayHud(true);
+        });
     }
 });

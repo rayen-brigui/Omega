@@ -24,6 +24,7 @@ document.getElementById('createcharacter').onclick = () => {
     document.getElementById('FatherName').value = ""
     document.getElementById('characterselector').style = "display:flex;"
     document.getElementById('createcharecterscreen').style = "display:none;"
+    alt.emit('showcharData');
  }
  document.getElementById('lastpage').onclick = () => {
    document.getElementById('characterselector').style = "display:flex;"
@@ -35,22 +36,24 @@ document.getElementById('createcharacter').onclick = () => {
         if(character[i] == undefined) {
             document.getElementById(i).innerHTML = `
             <ul>
+            <li>Id.Num: </li>
             <li>Name: </li>
             <li>Surname: </li>
             <li>Sex: </li>
-            <li>Bankid: </li>
-            <li>Bank Money : </li>
+            <li>Bank Balance: </li>
+            <li>Cash: </li>
             <button>Empty Slot</button>
             </ul>
         `
         }else {
             document.getElementById(i).innerHTML = `
                 <ul>
+                <li>Id.Num: ${character[i].id}</li>
                 <li>Name: ${character[i].name}</li>
                 <li>Surname: ${character[i].surname}</li>
                 <li>Sex: ${character[i].sex}</li>
-                <li>Bankid: ${character[i].bankid}</li>
-                <li>Bank Money : ${character[i].bankmoney}</li>
+                <li>Bank Balance: ${character[i].bankmoney}</li>
+                <li>cash: ${character[i].cash}</li>
                 <button id="${character[i].id}">Select character</button>
                 </ul>
             `

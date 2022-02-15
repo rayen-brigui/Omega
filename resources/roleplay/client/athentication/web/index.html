@@ -246,8 +246,8 @@ img {
                     <div class="login-space">
                         <div class="login"> 
                             <form action="" method="post" >
-                                <div class="group"> <label for="user" class="label">Username</label> <input id="user1" type="text" class="input" placeholder="Enter your username" name="username"> </div>
-                                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass1" type="password" class="input" data-type="password" name="password" placeholder="Enter your password"> </div>
+                                <div class="group"> <label for="user" class="label">Username</label> <input id="user1" type="text" class="input" placeholder="Enter your username" name="username"></div>
+                                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass1" type="password" class="input" data-type="password" name="password" placeholder="Enter your password"></div>
                                 <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div>
                                 <div class="group"> <input type="submit" class="button" value="Sign In" onclick="sendLoginData()"> </div>
                                 <div class="hr"></div>
@@ -274,7 +274,12 @@ img {
 </div>
 <script>
     
-
+alt.on('savedData',(user,pass)=>{
+    var text1=document.getElementById('user1');
+    text1.value=user;
+   var text2=document.getElementById('pass1');
+    text2.value=pass;
+})
 
  
 
@@ -282,7 +287,8 @@ img {
             function sendLoginData() {
                 let account_name = document.getElementById("user1").value;
                 let account_password = document.getElementById("pass1").value;
-                alt.emit("client:auth:login:send:data", account_name, account_password);
+                let rememberMe = document.getElementById("check").checked;
+                alt.emit("client:auth:login:send:data", account_name, account_password,rememberMe);
             }
 
             function sendRegisterData() {

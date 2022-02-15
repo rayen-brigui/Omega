@@ -5,3 +5,6 @@ import './admin_cmd/teleport';
 import './Maps/island';
 import './Maps/interiors';
 import './athentication/characters/index'
+import './athentication/character_creator/creator'
+//Playere HUD
+import './PlayerHud/player'

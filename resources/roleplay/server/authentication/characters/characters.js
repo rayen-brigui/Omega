@@ -1,11 +1,14 @@
 import * as alt from 'alt-server';
+import { logError } from 'alt-shared';
 import * as sm from 'simplymongo';
 import '../../Database/Database';
 
 
-alt.onClient('sessionUsername',(player,username)=>{
- getcharData(player,username);
-
+alt.onClient('sessionUsername',async(player,username)=>{
+ 
+let data=await getcharData(player,username);
+ alt.emitClient(player,'sessionData',data);
+ //console.log(data);
 
 });  
 
@@ -17,23 +20,7 @@ function isEmpty(obj) {
 async function getcharData(player,username){
 const db=sm.getDatabase();
 let data=await db.fetchAllByField('username',username,'characters');
-   //for(let i=0;i<=1;i++){
-    //if (data[i]==undefined){
-//console.log(`no character found at slot ${i+1}`);
-       
-//alt.emitClient(player,'sessionData',`no character found at slot ${i+1}`);
-   //  }else {
-      //  console.log(data[i]);
-      alt.emitClient(player,'sessionData',data);
       return data;
-     //}
-   //}
-    
-      
-   // }
-
-   
-
 }
 
 function randomHex(len) {
@@ -79,55 +66,56 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
     name: CharName,
    surname: CharSurname,
    CharacterViewData: {
-       fatherid: "0",
-       motherid: "0",
-       Resemblance : "0.0",
-       Skintone: "0",
+       fatherid: 0,
+       motherid: 0,
+       Resemblance : 0.0,
+       Skintone: 0,
        SettedHairColletion: "mpbeach_overlays",
        SettedHairOverlay: "FM_Hair_Fuzz",
-       SettedHairValue: "0",
-       SettedHairColorOne: "0",
-       SettedHairColorTwo: "0",
-       brow: "0",
-       browColorOne: "0",
-       Eyes: "0",
-       NoseWidth: "0.0",
-       NoseHeight: "0.0",
-       NoseLength: "0.0",
-       NoseBoneHigh: "0.0",
-       NosePeakLowering: "0.0",
-       NoseBoneTwist: "0.0",
-       CheekBones: "0.0",
-       CheekBonesWidth: "0.0",
-       CheeksWidth: "0.0",
-       Lips: "0.0",
-       JawBoneWidth: "0.0",
-       JawBackLengh: "0.0",
-       ChinProfile: "0.0",
-       ChinShape: "0.0",
-       ChimpBoneWidth: "0.0",
-       ChimpHole: "0.0",
-       MF: "0",
-       EyeMakeUp: "0",
-       Blusher: "0",
-       BlusherColor: "0",
-       LiphStick: "0",
-       LiphStickColor: "0",
-       arms: "0",
-       pants: "0",
-       shoes: "0",
-       shirt: "0",
-       torso: "0"
+       SettedHairValue: 0,
+       SettedHairColorOne: 0,
+       SettedHairColorTwo: 0,
+       brow: 0,
+       browColorOne: 0,
+       Eyes: 0,
+       NoseWidth: 0.0,
+       NoseHeight: 0.0,
+       NoseLength: 0.0,
+       NoseBoneHigh: 0.0,
+       NosePeakLowering: 0.0,
+       NoseBoneTwist: 0.0,
+       CheekBones: 0.0,
+       CheekBonesWidth: 0.0,
+       CheeksWidth: 0.0,
+       Lips: 0.0,
+       JawBoneWidth: 0.0,
+       JawBackLengh: 0.0,
+       ChinProfile: 0.0,
+       ChinShape: 0.0,
+       ChimpBoneWidth: 0.0,
+       ChimpHole: 0.0,
+       MF: 0,
+       EyeMakeUp: 0,
+       Blusher: 0,
+       BlusherColor: 0,
+       LiphStick: 0,
+       LiphStickColor: 0,
+       arms: 0,
+       pants: 0,
+       shoes: 0,
+       shirt: 0,
+       torso: 0
    },
    sex: sex,
-   bankid: `LS-${generate(8)}`,
+   bankid: `OB-${generate(10)}`,
    bankmoney: 5000,
    cash:1000,
    lastlocation: "",
-   health: "200",
-   armour: "0",
-   food: "50",
-   water: "50",
+   health: 200,
+   armour: 0,
+   food: 1000,
+   water:1000,
+   dimention:0,
    isAdmin: false,
    isDead: false,
    birthdate: date,
@@ -138,4 +126,31 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
    getcharData(player,sessionUsername);
   }
 
-        // console.log(docs)
+  alt.onClient('metas',(player,character,i) => {
+    player.setMeta('CharacterName',character.name)
+    player.setMeta('CharacterSurname',character.surname)
+    player.setMeta('CharacterBankID',character.bankid)
+    player.setMeta('CharacterBankMoney',character.bankmoney)
+    player.setMeta('CharacterID',character.id)
+    player.setMeta('foodlvl',character.food)
+    player.setMeta('waterlvl',character.water)
+    alt.emit('ShowHud',player);
+    alt.setMeta('selectedCharacter',i)
+})
+
+alt.onClient('retrieveData',async(player,sessionUsername,i)=>{
+ let datachar=await findselectedchar(sessionUsername);
+ 
+  
+  alt.emitClientRaw(player,'selectedCharData',datachar[i]);
+  console.log('************Just to test*********');
+  console.log(datachar);
+});
+
+
+async function findselectedchar(username2){
+  console.log(username2);
+  const db=sm.getDatabase();
+  let data0=await db.fetchAllByField('username',username2,'characters');
+  return data0;
+}
