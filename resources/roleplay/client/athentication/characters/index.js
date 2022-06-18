@@ -108,6 +108,6 @@ charview.on('NewCharacter',(CharName,CharSurname,date,MomName,FatherName,sex) =>
         native.setPedComponentVariation(alt.Player.local.scriptID, 8, char.shirt, 0, 0); // shirt
         native.setPedComponentVariation(alt.Player.local.scriptID, 11, char.torso, 0, 0); // torso
 
-        alt.emit('afterSelect');
+        alt.emit('AfterSelectHud');
        
         }) }

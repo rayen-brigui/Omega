@@ -1,5 +1,36 @@
 import * as sm from 'simplymongo';
-new sm.Database('mongodb://127.0.0.1:27017', 'Omega', ['accounts','characters','vehicles']);
+new sm.Database('mongodb://127.0.0.1:27017', 'Omega', ['accounts','characters','vehicles','inventory']);
+
+
+
+export async function findselectedchar(username2){
+    console.log(username2);
+    const db=sm.getDatabase();
+    let data0=await db.fetchAllByField('username',username2,'characters');
+    return data0[0];
+  }
+
+
+export async function ifExist(field,args,Database){
+    const db=sm.getDatabase();
+    let result=await db.fetchAllByField(field,args.toString(),Database);
+    return (result.length>0)
+}
+export function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+  function randomHex(len) {
+    var maxlen = 8,
+        min = Math.pow(16,Math.min(len,maxlen)-1),
+        max = Math.pow(16,Math.min(len,maxlen)) - 1,
+        n   = Math.floor( Math.random() * (max-min+1) ) + min,
+        r   = n.toString(16);
+    while ( r.length < len ) {
+       r = r + randomHex( len - maxlen );
+    }
+    return r;
+  };
+//new sm.Database('mongodb+srv://rayen:0000@cluster0.xoqzj.mongodb.net/Omega?retryWrites=true&w=majority', 'Omega', ['accounts','characters','vehicles'],'rayen','0000');
 
 /*export async function insert_data(data,collections) {
     

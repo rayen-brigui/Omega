@@ -16,6 +16,9 @@ import './Database/Database'
 //Playere HUD
 import './PlayerHud/player'
 
+//Inventory
+import './Inventory/inventory'
+
 // Events
 import './events/playerConnect';
 import './events/playerDeath';

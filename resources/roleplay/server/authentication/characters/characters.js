@@ -2,6 +2,8 @@ import * as alt from 'alt-server';
 import { logError } from 'alt-shared';
 import * as sm from 'simplymongo';
 import '../../Database/Database';
+import {findselectedchar,ifExist} from '../../Database/Database';
+import '../../../shared/utility/enums';
 
 
 alt.onClient('sessionUsername',async(player,username)=>{
@@ -12,9 +14,7 @@ let data=await getcharData(player,username);
 
 });  
 
-function isEmpty(obj) {
-    return Object.keys(obj).length === 0;
-}
+
 
 
 async function getcharData(player,username){
@@ -23,19 +23,9 @@ let data=await db.fetchAllByField('username',username,'characters');
       return data;
 }
 
-function randomHex(len) {
-    var maxlen = 8,
-        min = Math.pow(16,Math.min(len,maxlen)-1),
-        max = Math.pow(16,Math.min(len,maxlen)) - 1,
-        n   = Math.floor( Math.random() * (max-min+1) ) + min,
-        r   = n.toString(16);
-    while ( r.length < len ) {
-       r = r + randomHex( len - maxlen );
-    }
-    return r;
-  };
+
 /******generate a number with n length */
-  function generate(n) {
+ async function  generate(n) {
     var add = 1, max = 12 - add;   // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.   
 
     if ( n > max ) {
@@ -45,8 +35,15 @@ function randomHex(len) {
     max  = Math.pow(10, n+add);
     var min    = max/10; // Math.pow(10, n) basically
     var number = Math.floor( Math.random() * (max - min + 1) ) + min;
+    let res=await  ifExist('id',number,'characters');
+    if (res){
+      generate(n)
+    }else{
+                return ("" + number).substring(add); 
 
-    return ("" + number).substring(add); 
+    }
+    
+    
 }
 
 
@@ -62,6 +59,7 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
     console.log(sessionUsername,CharName,CharSurname,date,MomName,FatherName,sex);
     const db=sm.getDatabase();
    let charData= await db.insertData({
+    id:`01${await generate(8)}`,
       username:sessionUsername, 
     name: CharName,
    surname: CharSurname,
@@ -107,9 +105,8 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
        torso: 0
    },
    sex: sex,
-   bankid: `OB-${generate(10)}`,
+   bankid: `OB-${await generate(10)}`,
    bankmoney: 5000,
-   cash:1000,
    lastlocation: "",
    health: 200,
    armour: 0,
@@ -122,11 +119,12 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
    setCharacterModel: false,
    MomName: MomName,
    FatherName: FatherName,
-   id:`${generate(8)}`},'characters',true);
+   inventory: { maxWeight:150, money:0,toolbar:[],equipment:[],items:[]}},'characters',true);
    getcharData(player,sessionUsername);
   }
 
   alt.onClient('metas',(player,character,i) => {
+    player.setMeta('SessionUsername',character.username)
     player.setMeta('CharacterName',character.name)
     player.setMeta('CharacterSurname',character.surname)
     player.setMeta('CharacterBankID',character.bankid)
@@ -138,19 +136,16 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
     alt.setMeta('selectedCharacter',i)
 })
 
+
 alt.onClient('retrieveData',async(player,sessionUsername,i)=>{
  let datachar=await findselectedchar(sessionUsername);
  
   
-  alt.emitClientRaw(player,'selectedCharData',datachar[i]);
+  alt.emitClient(player,'selectedCharData',datachar);
   console.log('************Just to test*********');
+  alt.emit('checkInv',player);
   console.log(datachar);
 });
 
 
-async function findselectedchar(username2){
-  console.log(username2);
-  const db=sm.getDatabase();
-  let data0=await db.fetchAllByField('username',username2,'characters');
-  return data0;
-}
+

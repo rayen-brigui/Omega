@@ -114,6 +114,6 @@ alt.onClient('Finishedit',finishEdit);
  }, 'characters');
    alt.emitClient(player,'Finishedit');
    
-   console.log('character saved');
+   
     }
 

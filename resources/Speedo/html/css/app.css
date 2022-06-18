@@ -51,6 +51,7 @@ body {
 #speedText {
   margin-left: 35px;
   margin-top: -40px;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
 #gearText {

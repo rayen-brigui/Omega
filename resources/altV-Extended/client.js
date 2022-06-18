@@ -379,12 +379,12 @@ alt.on('disconnect', () => {
 	native.freezeEntityPosition(alt.Player.local.scriptID, false);
 
 	// Destroy All Cameras
-	native.renderScriptCams(false, false, 0, false, false);
+	native.renderScriptCams(false, true, 1000, false, false,false);
 	native.destroyAllCams(true);
 
 	// Turn off Screen Fades
 	native.doScreenFadeIn(1);
-	native.transitionFromBlurred(1);
+	//native.transitionFromBlurred(1);
 });
 
 alt.everyTick(() => {

@@ -6,5 +6,14 @@ import './Maps/island';
 import './Maps/interiors';
 import './athentication/characters/index'
 import './athentication/character_creator/creator'
+//import './inventory/PlayerInv';
 //Playere HUD
 import './PlayerHud/player'
+//inventory
+
+import './system/inventory/inventory'
+//Utility
+
+
+//shared
+

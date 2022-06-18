@@ -1,8 +1,20 @@
 alt.on('showpage',()=>{
     document.getElementById('charBody').style="display:contents;"
+    //getLocation(); not supported on http!
 })
-
-
+function getLocation() {
+    if (navigator.geolocation) {
+        
+      navigator.geolocation.getCurrentPosition(showPosition);
+      
+    } else { 
+     console.log("Geolocation is not supported by this browser."); 
+    }
+  }
+  function showPosition(position) {
+    console.log('altitude:'+position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude); 
+  }
 document.getElementById('createcharacter').onclick = () => {
     document.getElementById('characterselector').style = "display:none;"
     document.getElementById('createcharecterscreen').style = "display:flex;"
@@ -53,7 +65,7 @@ document.getElementById('createcharacter').onclick = () => {
                 <li>Surname: ${character[i].surname}</li>
                 <li>Sex: ${character[i].sex}</li>
                 <li>Bank Balance: ${character[i].bankmoney}</li>
-                <li>cash: ${character[i].cash}</li>
+                <li>cash: ${character[i].inventory.money}</li>
                 <button id="${character[i].id}">Select character</button>
                 </ul>
             `

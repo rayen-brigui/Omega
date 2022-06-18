@@ -303,7 +303,6 @@ document.getElementById("fourLastPage").onclick = () => {
     document.getElementById("appearance").style.display = "block"
 }
 document.getElementById('Finish').onclick = () => {
-    console.log('Bitti')
     alt.emit('Finish',
     fatherid,
     motherid,
@@ -508,7 +507,6 @@ document.querySelectorAll(".selectorLeft").forEach(selectorLeft => {
                      }
                       if(split[0] == "Hair") {
                          document.getElementById(split[0]).value = Number(value) - 1 
-                         console.log(sex)
                          if(sex == null) return;
                          if(sex == "male") {
                              if(document.getElementById(split[0]).value == -1) {return alt.emit('SetHair',"","")}

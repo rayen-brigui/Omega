@@ -2,7 +2,7 @@ import * as alt from 'alt';
 import * as chat from 'chat';
 //import * as extended from 'altV-Extended'
 import * as native from 'natives';
-import { createPedEditCamera, destroyPedEditCamera, setFov, setZPos } from './camera'; // From Stuyk
+import { createPedEditCamera, destroyPedEditCamera, setFov, setZPos } from './camera'; 
 
 let view = new alt.WebView("http://resource/client/athentication/character_creator/html/index.html")
 
@@ -181,6 +181,10 @@ view.on('Finish',(fatherid,motherid,Resemblance,Skintone,SettedHairColletion,Set
             view.destroy();
             destroyPedEditCamera();
             native.destroyAllCams(true);
-            alt.emit('changecam');
             alt.showCursor(false);
+            //alt.emit('changecam');
+            alt.toggleGameControls(true);
+            native.displayRadar(true);
+            native.displayHud(true); 
+
     })

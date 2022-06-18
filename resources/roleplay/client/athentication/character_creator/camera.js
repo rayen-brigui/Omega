@@ -1,4 +1,5 @@
 import * as alt from 'alt';
+import { showCursor } from 'alt-client';
 import * as native from 'natives';
 
 let cameraControlsInterval;
@@ -43,7 +44,8 @@ export function createPedEditCamera() {
     cameraControlsInterval = alt.setInterval(handleControls, 0);
 }
 
-export function destroyPedEditCamera() {
+export function 
+destroyPedEditCamera() {
     if (cameraControlsInterval !== undefined || cameraControlsInterval !== null) {
         alt.clearInterval(cameraControlsInterval);
         cameraControlsInterval = null;
@@ -55,7 +57,7 @@ export function destroyPedEditCamera() {
 
     native.destroyAllCams(true);
     native.renderScriptCams(false, true,1000, true, true,0);
-
+    showCursor(false);
     zpos = 0;
     fov = 90;
     startPosition = null;
@@ -89,7 +91,7 @@ function handleControls() {
             if (fov < 10) {
                 fov = 10;
             }
-
+            
             native.setCamFov(camera, fov);
             native.setCamActive(camera, true);
             native.renderScriptCams(true,true,1000, true, false,0);

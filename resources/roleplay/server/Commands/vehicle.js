@@ -18,7 +18,6 @@ if (player.vehicle.valid) {
 
 
 
-
 function handleAddVehicle(player, args) {
     if (!args || !args[0]) {
         player.send(`/veh <name>`);

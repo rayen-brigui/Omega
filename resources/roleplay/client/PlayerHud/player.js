@@ -18,7 +18,10 @@ alt.onServer("maxAllStats", () => {
     game.statSetInt(game.getHashKey("SP2_WHEELIE_ABILITY") , 100, true);
     alt.log("yay, max stats achieved!");
 });
-
+alt.setInterval(()=>{
+let stat= alt.Player.local.health;
+    alwaysgui.emit('energy', stat/2);
+},100)
 
 alt.onServer("energy", (energy) => {
     alwaysgui.emit('energy', energy);
@@ -136,6 +139,6 @@ alt.setInterval(() => {
     }
 }, 1000);
 
-alt.on('afterSelect',()=>{
+alt.on('AfterSelectHud',()=>{  ///selcting character section
     alwaysgui.emit('showhud');
 })
