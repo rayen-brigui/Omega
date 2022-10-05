@@ -10,4 +10,5 @@ function playerDisconnect(player) {
     }
 
     alt.log(`${player.name} has disconnected from the server.`);
+    
 }

@@ -243,7 +243,7 @@ img {
                                 <div class="group"> <input type="submit" class="button" value="Sign In" onclick="sendLoginData()"> </div>
                                 <div class="hr"></div>
                            </form>
-                           <div class="foot"> <a href="https://media.makeameme.org/created/well-done-asshole.jpg">Forgot Password?</a> </div>
+                           <div class="foot" id="fp" > <a href="forgotpass()"></a> Forgot Password? </div>
                         </div>
                         <form action="" method="post">
                          <div class="sign-up-form">
@@ -263,7 +263,12 @@ img {
     </div>
 </div>
 <script>
-  
+    
+
+
+ 
+
+
             function sendLoginData() {
                 let account_name = document.getElementById("user1").value;
                 let account_password = document.getElementById("pass1").value;
