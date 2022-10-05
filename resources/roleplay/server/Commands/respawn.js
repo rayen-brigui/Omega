@@ -30,13 +30,8 @@ function handleRespawn(player) {
     
     player.giveWeapon(0x5a96ba4, 9999, true);
     const id = player.id;
-    console.log(player.id);
-    console.log(player.ip);
-    console.log(player.hwidHash);
-    player.setWeather(0);
-    const social = player.socialId;
-    console.log(social);
-    player.send(`You were respawned.`);
+    player.setWeather(1);
+
 
 };
 

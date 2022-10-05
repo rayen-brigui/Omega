@@ -18,7 +18,6 @@ if (player.vehicle.valid) {
 
 
 
-
 function handleAddVehicle(player, args) {
     if (!args || !args[0]) {
         player.send(`/veh <name>`);
@@ -42,7 +41,10 @@ function handleAddVehicle(player, args) {
         );
         cvehicle.engineOn = true;
           cvehicle.numberPlateText="RB"
-        player.setIntoVehicle( cvehicle,1);
+          
+            player.setIntoVehicle( cvehicle,1);  
+        
+        
         player.send(`{00FF00}${vehicleName} was successfully spawned.`);
     } catch (err) {
         console.log(err);

@@ -1,6 +1,7 @@
 import * as alt from 'alt-server';
 import './authentication/Auth';
-
+import './authentication/characters/characters'
+import './authentication/character_creator/creator'
 
 // alt:V Files to Load
 // Commands
@@ -12,6 +13,11 @@ import './commands/weapon';
 import './configuration/config';
 //Database
 import './Database/Database'
+//Playere HUD
+import './PlayerHud/player'
+
+//Inventory
+import './Inventory/inventory'
 
 // Events
 import './events/playerConnect';

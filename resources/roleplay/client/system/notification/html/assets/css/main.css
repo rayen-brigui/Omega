@@ -15,5 +15,5 @@ body,html{overflow:hidden}
 .notification-warning{background-image:linear-gradient(to right,#d4ac0d,#f4d03f)}
 .notification-success{background-image:linear-gradient(to right,#1e8449 ,#28b463)}
 .notification .notification-header p{margin:12px 12px ;color:rgb(255,255,255)}
-.notification .notification-body{width:100%;background-image:linear-gradient(to right,rgb(255, 115, 0) ,rgb(23, 20, 44));margin:2px 0;overflow:auto}
+.notification .notification-body{width:100%;background-image:linear-gradient(to right,rgb(255, 115, 0) ,rgb(46, 42, 70));margin:2px 0;overflow:auto}
 .notification .notification-body p{margin:12px 12px;color:#fff}@keyframes hideNotify{0%{margin:-6px 12px 2px 12px;opacity:.2}10%{margin:2px 12px 2px 12px;opacity:1}89%{opacity:1}100%{opacity:0}}

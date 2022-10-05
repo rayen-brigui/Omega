@@ -17,7 +17,7 @@ if (window.alt === undefined) {
 function colorify(text) {
   let matches = [];
   let m = null;
-  let curPos = 0;
+  let curPos =0;
 
   do {
     m = /\{[A-Fa-f0-9]{3}\}|\{[A-Fa-f0-9]{6}\}/g.exec(text.substr(curPos));

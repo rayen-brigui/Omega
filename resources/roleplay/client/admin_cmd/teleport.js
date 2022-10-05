@@ -35,12 +35,11 @@ function tpToWaypoint() {
             }                                             //this will help out
             game.setPedCoordsKeepVehicle(alt.Player.local, coords.x, coords.y,Gz);  //if textures already loaded then nothing to worry about :)         
 
-        }, 1000); 
+        }, 200); 
       };
       game.setPedCoordsKeepVehicle(alt.Player.local, coords.x, coords.y,coords.z);  //if textures already loaded then nothing to worry about :)         
   }
 };
-
 
  
 

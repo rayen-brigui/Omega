@@ -7,7 +7,11 @@ import { DEFAULT_CONFIG } from '../configuration/config';
 
 
 alt.on('beforePlayerConnect', (connectionInfo) => {
+<<<<<<< HEAD
     console.log(connectionInfo);
+=======
+    
+>>>>>>> b8bcb244e9e0d4129bcbb4e781c56aaee452cf8a
     
     
     }

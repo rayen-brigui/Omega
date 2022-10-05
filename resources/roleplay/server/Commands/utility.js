@@ -23,15 +23,6 @@ chat.registerCmd('tp', (player) => {
   });                                                     // requesting teleporting the player using the command              
 
 
-  chat.registerCmd('br',brmsg);
-  function brmsg(player,msg) {
-      chat.broadcast(msg);
-      
-  };
-
-
-
-
 
   chat.registerCmd('sm',spmodel)
   function spmodel(player,args)
