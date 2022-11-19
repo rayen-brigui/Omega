@@ -34,20 +34,15 @@ alt.showCursor(true);
                                          //Display login page
         webViewAuth = new alt.WebView("http://resource/client/athentication/web/index.html");
         webViewAuth.focus();
-        const saved_user=alt.LocalStorage.get('username');
-        const saved_pass=alt.LocalStorage.get('password');
-
-        if (saved_user!==''){
-            if (saved_pass!==''){
-                webViewAuth.emit('savedData',saved_user,saved_pass)
-                console.log(saved_user+saved_pass);
-            }
-        }
+        console.log(alt.LocalStorage.get('username'),alt.LocalStorage.get('password'));
+        webViewAuth.emit('savedData',alt.LocalStorage.get('username'),alt.LocalStorage.get('password'))
+            
         webViewAuth.on("client:auth:login:send:data", (account_name, account_password,rememberMe) => {
+            console.log(account_name, account_password,rememberMe);
            if (rememberMe){
                     alt.LocalStorage.set('username', account_name);
                     alt.LocalStorage.set('password', account_password);
-                    alt.LocalStorage.save();
+                    alt.LocalStorage.save;
                 alt.log(rememberMe);    
             }
             
@@ -64,16 +59,11 @@ alt.showCursor(true);
                 
               } else {
                   if (!(pass2=account_password)){  notify.littleNotification('<center><strong>Passwords do not Match </strong></center>',"danger");
-
                   }else {
                         alt.emitServer("server:auth:register:data", account_name,account_email, account_password);
-
-                  }
-                    }
+                  } }
             } else{
-                notify.littleNotification('<center><strong>You have entered an invalid email address!</strong></center>',"danger");
-            }
-            
+                notify.littleNotification('<center><strong>You have entered an invalid email address!</strong></center>',"danger"); }
         });
 
 	

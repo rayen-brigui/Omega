@@ -274,6 +274,15 @@ img {
 </div>
 <script>
   
+            alt.on("savedData",(user,pass)=>{
+             
+                    
+                document.getElementById("user1").value=`${user}`;
+                document.getElementById("pass1").value=`${pass}`;
+               
+
+
+            })
             function sendLoginData() {
                 let account_name = document.getElementById("user1").value;
                 let account_password = document.getElementById("pass1").value;
