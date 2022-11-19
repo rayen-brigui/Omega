@@ -10,7 +10,7 @@ alt.onClient('sessionUsername',async(player,username)=>{
  
 let data=await getcharData(player,username);
  alt.emitClient(player,'sessionData',data);
- //console.log(data);
+ console.log(data);
 
 });  
 
@@ -56,14 +56,13 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
    
 
   async function insertCharData(player,sessionUsername,CharName,CharSurname,date,MomName,FatherName,sex){
-    console.log(sessionUsername,CharName,CharSurname,date,MomName,FatherName,sex);
     const db=sm.getDatabase();
    let charData= await db.insertData({
     id:`01${await generate(8)}`,
-      username:sessionUsername, 
+    username:sessionUsername, 
     name: CharName,
-   surname: CharSurname,
-   CharacterViewData: {
+    surname: CharSurname,
+    CharacterViewData: {
        fatherid: 0,
        motherid: 0,
        Resemblance : 0.0,
@@ -139,12 +138,9 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
 
 alt.onClient('retrieveData',async(player,sessionUsername,i)=>{
  let datachar=await findselectedchar(sessionUsername);
- 
-  
   alt.emitClient(player,'selectedCharData',datachar);
   console.log('************Just to test*********');
   alt.emit('checkInv',player);
-  console.log(datachar);
 });
 
 

@@ -17,11 +17,16 @@ alt.onServer('sessionData',(args)=>{
 });
 
 charview.on('showcharData',()=>{
-    alt.emit('islogin')
+    alt.setTimeout(() => {
+        alt.emitServer('sessionUsername',alt.getMeta('sessionUsername'));  
+
+    }, 500);
 })
 /*****send new char data***** */
-charview.on('NewCharacter',(CharName,CharSurname,date,MomName,FatherName,sex) => {
-    alt.emitServer('NewCharacter',alt.getMeta('sessionUsername'),CharName,CharSurname,date,MomName,FatherName,sex)});
+charview.on('NewCharacter',async(CharName,CharSurname,date,MomName,FatherName,sex) => {
+    
+   alt.emitServer('NewCharacter',alt.getMeta('sessionUsername'),CharName,CharSurname,date,MomName,FatherName,sex)
+});
 
 /**************after finishing selecting character****************** */
    
@@ -46,8 +51,8 @@ charview.on('NewCharacter',(CharName,CharSurname,date,MomName,FatherName,sex) =>
             alt.emit('PlayerData',character,i)
            // alt.emit('destroySpawn')
         }
-        charview.destroy();
-    })
+            charview.destroy();
+          })
 
         function acceptlogin(){
         

@@ -6,7 +6,7 @@ import { DEFAULT_CONFIG } from '../configuration/config';
 
 
 
-alt.on('beforePlayerConnect', (connectionInfo) => {
+alt.on('PlayerConnect', (connectionInfo) => {
 
     console.log(connectionInfo);
 

@@ -22,7 +22,7 @@ alt.on("playerConnect", (player) => {
 
 
 //@register
-   alt.onClient("server:auth:register:data", (player,account_name,account_email, account_password) =>{
+    alt.onClient("server:auth:register:data", (player,account_name,account_email, account_password) =>{
 
     const hash = crypto.createHash("sha256");
     hash.update(account_password);
