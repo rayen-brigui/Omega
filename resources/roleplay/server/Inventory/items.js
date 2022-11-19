@@ -789,7 +789,6 @@ export const list = [{
    
    {
     type: "clothes",
-    id:0,
     type2: "mask",
     id:0,
     name: "Pink Pig",

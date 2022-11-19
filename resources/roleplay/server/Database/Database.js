@@ -1,8 +1,8 @@
 import * as sm from 'simplymongo';
-<<<<<<< HEAD
+
 new sm.Database('mongodb+srv://rayen:1234@cluster0.i00zm.mongodb.net/?retryWrites=true&w=majority', 'Omega', ['accounts','characters','vehicles']);
-=======
-new sm.Database('mongodb://127.0.0.1:27017', 'Omega', ['accounts','characters','vehicles','inventory']);
+
+//new sm.Database('mongodb://127.0.0.1:27017', 'Omega', ['accounts','characters','vehicles','inventory']);
 
 
 
@@ -54,4 +54,4 @@ export async function find_data(FieldName,Value) {
 }
 let x=find_data('username','rayen');
 console.log(x);*/
->>>>>>> b8bcb244e9e0d4129bcbb4e781c56aaee452cf8a
+// b8bcb244e9e0d4129bcbb4e781c56aaee452cf8a
