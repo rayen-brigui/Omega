@@ -1,5 +1,4 @@
 import * as alt from 'alt-server';
-import { logError } from 'alt-shared';
 import * as sm from 'simplymongo';
 import '../../Database/Database';
 import {findselectedchar,ifExist} from '../../Database/Database';
@@ -10,7 +9,7 @@ alt.onClient('sessionUsername',async(player,username)=>{
  
 let data=await getcharData(player,username);
  alt.emitClient(player,'sessionData',data);
- console.log(data);
+
 
 });  
 
@@ -106,7 +105,7 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
    sex: sex,
    bankid: `OB-${await generate(10)}`,
    bankmoney: 5000,
-   lastlocation: "",
+   lastlocation: {},
    health: 200,
    armour: 0,
    food: 1000,
@@ -139,8 +138,7 @@ alt.onClient('NewCharacter',(player,sessionUsername,CharName,CharSurname,date,Mo
 alt.onClient('retrieveData',async(player,sessionUsername,i)=>{
  let datachar=await findselectedchar(sessionUsername);
   alt.emitClient(player,'selectedCharData',datachar);
-  console.log('************Just to test*********');
-  alt.emit('checkInv',player);
+  alt.emit('checkInv',player);//to test
 });
 
 

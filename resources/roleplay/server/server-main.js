@@ -17,7 +17,7 @@ import './Database/Database'
 import './PlayerHud/player'
 
 //Inventory
-import './Inventory/inventory'
+//import './Inventory/inventory'
 
 // Events
 import './events/playerConnect';

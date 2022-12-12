@@ -1,23 +1,27 @@
 import alt from 'alt-server';
 import chalk from 'chalk';
 import * as sm from 'simplymongo';
-import { findselectedchar } from '../Database/Database';
+import { findselectedchar ,findselectedcharById} from '../Database/Database';
 
 alt.log(chalk.greenBright('Loaded: events/playerDisconnect'));
 alt.on('playerDisconnect', playerDisconnect);
-
+alt.onClient('Desconnecting',(player,arg)=>{
+  alt.log(arg);
+  /* 
+    const db = sm.getDatabase();
+    const x=player.pos.x;
+    const y=player.pos.y;
+    const z=player.pos.z;
+    await findselectedcharById(arg).then(async(res)=>{
+        alt.log(res);
+        await db.updatePartialData(res._id, { lastlocation:{x,y,z} }, 'characters');
+    });
+    */
+    
+})
 async function playerDisconnect(player) {
     if (!player || !player.valid) {
         return;
     }
-    const db = sm.getDatabase();
    
-    const user=player.getMeta('SessionUsername');
-    const data=await findselectedchar(user);
-     const res= await db.updatePartialData(data[0]._id, { lastlocation:player.pos }, 'characters');
-    
-    
-    alt.log(`${player.name} has disconnected from the server.`);
-    alt.log(player.pos);
-    
 }

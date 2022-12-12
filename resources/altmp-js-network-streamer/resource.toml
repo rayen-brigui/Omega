@@ -1,0 +1,4 @@
+client-files = [ 'shared.mjs' ]
+client-main = 'shared.mjs'
+main = 'streamer.mjs'
+type = 'js'

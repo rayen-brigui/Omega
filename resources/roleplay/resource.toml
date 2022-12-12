@@ -1,0 +1,5 @@
+client-files = [ 'client/*', 'shared/*' ]
+client-main = 'client/client-main.js'
+deps = [ 'chat' ]
+main = 'server/server-main.js'
+type = 'js'

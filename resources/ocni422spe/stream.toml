@@ -1,0 +1,10 @@
+files = [ 'stream/*' ]
+
+[gxt]
+0x4949A7F8 = 'BMW'
+0xC14827B5 = 'i4'
+
+[meta]
+'stream/carvariations.meta' = 'VEHICLE_VARIATION_FILE'
+'stream/handling.meta' = 'HANDLING_FILE'
+'stream/vehicles.meta' = 'VEHICLE_METADATA_FILE'

@@ -11,7 +11,7 @@ import './athentication/character_creator/creator'
 import './PlayerHud/player'
 //inventory
 
-import './system/inventory/inventory'
+//import './system/inventory/inventory'
 //Utility
 
 

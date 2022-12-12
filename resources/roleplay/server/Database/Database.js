@@ -13,7 +13,11 @@ export async function findselectedchar(username2){
     return data0[0];
   }
 
-
+  export async function findselectedcharById(arg){
+    const db=sm.getDatabase();
+    let data=await db.fetchAllByField('id',arg,'characters');
+    return data[0];
+  }
 export async function ifExist(field,args,Database){
     const db=sm.getDatabase();
     let result=await db.fetchAllByField(field,args.toString(),Database);
